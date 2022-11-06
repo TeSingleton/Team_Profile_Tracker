@@ -53,7 +53,7 @@ db.query = utils.promisify(db.query);
 
         // THEN Run the Query 
         // INSERT INTO role (title, sale, department_id)
-        // VALUES ("Manager", 120000, 1)
+        // VALUES (?, ?, ?)
 
             
             // THEN ask the user what they want to do next?
