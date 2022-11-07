@@ -1,59 +1,38 @@
 const mysql = require('mysql2');
-const utils =require('util')
-const PORT = process.env.PORT || 3001;
-const app = express();
+const inquirer = require('inquirer');
+const db = require('./db/connection');
+const util = require('util');
 
-// Express middleware
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-
-// Connect to database
-const db = mysql.createConnection(
-  {
-    host: 'localhost',
-    // MySQL username,
-    user: 'root',
-    // MySQL password
-    password: '',
-    database: 'classlist_db'
-  },
-  console.log(`Connected to the classlist_db database.`)
-);
-
-db.query = utils.promisify(db.query);
+db.query=util.promisify(db.query);
 
 
+// inquirer questions
 
-// View All departments
-// SELECT * FROM departments;
-
-// View all roles
-// SELECT * FROM roles;
-
-// view all employees
-// SELECT * FROM employees;
-
-
-// Create new departments 
-
-// prompt the user for the "name" of the department
-
-        // Then Run the Query
-        // INSERT INTO departments(name)
-        // VALUES ('sales');
-
-              // THEN ask the user what they want to do next?
-
-
-// Create a new role 
-
-// Get The Existing Deparments from the 'department' table
-
-        // THEN prompt the user for the "title", "salary" , and "department  for the role"
-
-        // THEN Run the Query 
-        // INSERT INTO role (title, sale, department_id)
-        // VALUES (?, ?, ?)
-
-            
-            // THEN ask the user what they want to do next?
+const menu = [{
+  name: "mainMenu",
+  type: "list",
+  message: "Select an option, please",
+  choices: [
+    {
+      name: "See All Employees",value: "View_Employees"
+    },
+    {
+      name: "Add Employees", value: "Add_Employee" 
+    },
+    {
+      name: " Update Employee",value: "Update_Role"
+    },
+    {
+      name: "View All Roles ", value: "View_Roles"
+    },
+    {
+name: "View All Departments", value: "View_Departments"
+    },
+    {
+      name : "Add Department", value: "Add_Department"
+    },
+    {
+      name: "Quit", value: "QUIT"
+    },
+  ]
+}];
