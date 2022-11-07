@@ -5,6 +5,36 @@ const util = require('util');
 
 db.query=util.promisify(db.query);
 
+var departments = [
+  {name:"Engineering", value:1},
+  {name: "legal", value:2},
+  {name: "Finance", value:3},
+  {name: "Sales", value: 4}
+];
+
+var roles=[
+  {name: "Senior Engineer", value:1},
+  {name: "Junior  Engineer", value:2},
+  {name: "Clerk", value:3},
+  {name: "Lawyer", value:4},
+  {name: "Lead Accountant", value:5},
+  {name: "Senior Sales Agent", value:6},
+  {name: "Sales Agent", value:7},
+];
+
+var newRoleID = roles.lenght+1;
+
+var employees =[
+  {name:"Barry Allen",value:1},
+  {name:"Wally West",value:2},
+  {name:"Jay Garrick",value:3},
+  {name:" Bart Allen",value:4},
+  {name:"Eobard Thawn",value:5},
+  {name:"Jonathan Chambers",value:6},
+  {name:"August Heart",value:7},
+];
+
+var newEmployee = employees.length+1;
 
 // inquirer questions
 
@@ -36,3 +66,49 @@ name: "View All Departments", value: "View_Departments"
     },
   ]
 }];
+
+
+// add employees inquirer
+const addEmployees = [
+  {
+    name: "newHireFirstName",
+    type: "input",
+    message: "Enter New Hire's First Name?" ,
+  },
+  {
+    name:"newHireLastName" ,
+    type:"input",
+    message:"What is their Last Name?" ,
+  },
+  { 
+    name:"newHireRole" ,
+    type:"list" ,
+    message:"What is their Role?" ,
+    choices: roles
+  },
+  {
+    name: "newHireManager",
+    type: "list",
+    message:"Who is their Manager? Please enter their ID." ,
+    choices: employees
+  },
+];
+
+// update employees inquirer
+
+// add role 
+
+// add department
+
+
+// show menu
+
+
+// view all employees
+
+
+// add employees
+
+// update employee role
+
+
