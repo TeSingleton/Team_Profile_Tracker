@@ -34,7 +34,7 @@ var employees =[
   {name:"August Heart",value:7},
 ];
 
-var newEmployee = employees.length+1;
+var newEmployeeID = employees.length+1;
 
 // inquirer questions
 
@@ -54,6 +54,9 @@ const menu = [{
     },
     {
       name: "View All Roles ", value: "View_Roles"
+    },
+    {
+name: "Add Role", value:"Add_Role"
     },
     {
 name: "View All Departments", value: "View_Departments"
@@ -124,7 +127,7 @@ choices:departments},
 
 const addDepartment =[
   {name:"departmentName",
-type"input",
+type:"input",
 message:"Please enter Department Name ?"}
 ]
 
@@ -137,6 +140,35 @@ const showMenu = async()=>{
     await allEmployees();
     showMenu();
   }
+  if(response.mainMenu == 'Add_Employee'){
+    await addEmployee();
+    showMenu();
+  }
+  if(response.mainMenu=='Update_Role'){
+    await updateEmpRole();
+    showMenu();
+  }
+  if (response.mainMenu=='View_Roles'){
+    await viewAllRoles();
+    showMenu();
+  }
+  if(response.mainMenu=='Add_Role'){
+    await addNewRole();
+    showMenu();
+  }
+  if(response.mainMenu=='View_Departments'){
+    await showAllDepartments();
+    showMenu();
+  }
+  if (response.mainMenu=='Add_Department'){
+    await addNewDepartment();
+    showMenu();
+  }
+  if(response.mainMenu == 'QUIT'){
+    console.log('Thank You, GoodBye ✌️😁')
+      process.exit();
+    
+  }
 }
 
 const showEmployees = async()=>{
@@ -148,9 +180,18 @@ const showEmployees = async()=>{
 
 
 // view all employees
-
+const addEmployee = async()=>{
+  await inquirer,prompt(addEmployees).then(function(data){
+    const newEmployee ={};
+    newEmployee["name"]= `${data.newHireFirstName}${data.newHireLastName}`;
+    newEmployee["value"]=newEmployeeID;
+    employees.push(newEmployee);
+    db.query(`INSERT INTO employees(first_name, last_name, role_id, manager_id) VALUES (?,?,?,?)`,[data.newHireFirstName,data.newHireLastName,data.newHireRole,data.newHireManager]);
+  })
+}
 
 // add employees
+
 
 // update employee role
 
