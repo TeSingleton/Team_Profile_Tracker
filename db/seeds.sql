@@ -19,6 +19,6 @@ VALUES(1, "Barry","Allen",6,NULL), -- Senior Sales Agent
 (2,"Wally", "West",7,6), --Sales Agent
 (3,"Jay", "Garrick",1,NULL), --Senior Engineer
 (4,"Bart", "Allen",2,1), --Junior Engineer
-(5,"Eobard","Thawn",4,NULL) --Lawyer
-(6."Jonathan", "Chambers",3,4) --Clerk
-(7."August", "Heart",5,NULL) --Lead Accountant
+(5,"Eobard","Thawn",4,NULL), --Lawyer
+(6."Jonathan", "Chambers",3,4), --Clerk
+(7."August", "Heart",5,NULL); --Lead Accountant
