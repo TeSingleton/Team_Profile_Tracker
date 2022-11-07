@@ -96,12 +96,55 @@ const addEmployees = [
 
 // update employees inquirer
 
-// add role 
+const updateRole =[
+  {name:"updateEmployee",
+type:"list",
+message:"Who would you like to update",
+choices:employees},
+  {name:"updateRole",
+type:"list",
+message:"Which role will be assigned to selected employee",
+choices:roles}
+];
 
+// add role 
+const addRole =[
+  {name: "newRoleTitle",
+type:"input",
+message:"Enter Role Title"},
+  {name: "newRoleSalary",
+type:"input",
+message:"Enter the Salary for this Role",},
+  {name: "newRoleDepartment",
+type:"list",
+message:"Select Department for this new role",
+choices:departments},
+]
 // add department
 
+const addDepartment =[
+  {name:"departmentName",
+type"input",
+message:"Please enter Department Name ?"}
+]
 
 // show menu
+
+const showMenu = async()=>{
+  const response =await inquirer.createPromptModule(menu)
+
+  if(response.mainMenu=='View_Employees'){
+    await allEmployees();
+    showMenu();
+  }
+}
+
+const showEmployees = async()=>{
+  const allEmployees = await db.query('SELECT employees.id, employees.first_name AS "First Name ",employees.last_name AS "Last Name",empRole.title AS Role,departments.name AS Department, roles.salary AS Salary, CONCAT(manager.first_name," ",manager.last_name) AS Manager FROM employees LEFT JOIN employees manager ON manager_id INNER JOIN roles ON roles.id=employees.role_id INNER JOIN departments ON(departments.id=roles.department_id)');
+
+  console.table(allEmployees);
+}
+
 
 
 // view all employees
