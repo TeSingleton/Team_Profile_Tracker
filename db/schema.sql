@@ -7,15 +7,15 @@ USE employees_db;
 CREATE TABLE
     departments(
         id INT AUTO_INCREMENT NOT NULL,
-        dep_name VARCHAR(30) NOT NULL,
+        name VARCHAR(30) NOT NULL,
         PRIMARY KEY(id)
     );
 
 CREATE TABLE
-    role(
+    roles(
         id INT AUTO_INCREMENT NOT NULL,
-        title VARCHAR(30),
-        salary DEC(15, 2),
+        title VARCHAR(30) NOT NULL,
+        salary DECIMAL(15, 2),
         department_id INT,
         PRIMARY KEY(id),
         Foreign Key (department_id) REFERENCES departments (id) ON DELETE
@@ -26,16 +26,16 @@ CREATE TABLE
 
 CREATE TABLE
     employees(
-        id INT AUTO_INCREMENT PRIMARY KEY NOT NULL ,
+        id INT AUTO_INCREMENT   NOT NULL ,
         first_name VARCHAR(30) NOT NULL,
         last_name VARCHAR(30) NOT NULL,
         role_id INT,
         manager_id INT,
-        INDEX(manager_id),
-        Foreign Key (role_id)
-         REFERENCES role (id) 
-         ON DELETE CASCADE,
+        PRIMARY KEY(id),
+                Foreign Key (role_id)
+         REFERENCES roles (id) 
+         ON DELETE SET NULL,
             Foreign Key (manager_id) 
-            REFERENCES role(id) 
-            ON DELETE  CASCADE
+            REFERENCES employees(id) 
+            ON DELETE  SET NULL
     );
