@@ -7,14 +7,17 @@ const connection = mysql.createConnection(
     // Your MySQL password below if used, if not leave as is
     password: "",
     database: "employees_db",
-  }
-  // console.log(`Connected to the employees_db database.`)
+  },
+  console.log(`Connected to the employees_db database.`)
 );
 
 connection.connect(function (err) {
   if (err) {
     throw err;
   } else {
-    // console.log('Sucessfully connected to mysql!')
+  console.log('Sucessfully connected to mysql!')
   }
 });
+
+
+module.exports ={connection};

@@ -12,7 +12,7 @@ CREATE TABLE
     );
 
 CREATE TABLE
-    empRole(
+    role(
         id INT AUTO_INCREMENT NOT NULL,
         title VARCHAR(30),
         salary DEC(15, 2),
@@ -29,13 +29,13 @@ CREATE TABLE
         id INT AUTO_INCREMENT PRIMARY KEY NOT NULL ,
         first_name VARCHAR(30) NOT NULL,
         last_name VARCHAR(30) NOT NULL,
-        empRole_id INT,
+        role_id INT,
         manager_id INT,
         INDEX(manager_id),
-        Foreign Key (empRole_id)
-         REFERENCES empRole (id) 
+        Foreign Key (role_id)
+         REFERENCES role (id) 
          ON DELETE CASCADE,
             Foreign Key (manager_id) 
-            REFERENCES empRole(id) 
+            REFERENCES role(id) 
             ON DELETE  CASCADE
     );

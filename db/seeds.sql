@@ -3,7 +3,7 @@ INSERT INTO
 VALUES (1, "Engineering"), (2, "Legal"), (3, "Finance"), (4, "Sales");
 
 INSERT INTO
-    empRole (
+    role (
         id,
         title,
         salary,
@@ -22,7 +22,7 @@ INSERT INTO
         id,
         first_name,
         last_name,
-        empRole_id,
+        role_id,
         manager_id
     )
 VALUES (1, "Barry", "Allen", 6, NULL), 
