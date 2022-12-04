@@ -1,3 +1,5 @@
+const employeesArr = require("../array_folder/employees");
+const rolesArr = require("../array_folder/roles")
 const addEmployees = [
     {
       name: "newHireFirstName",
@@ -13,13 +15,13 @@ const addEmployees = [
       name:"newHireRole" ,
       type:"list" ,
       message:"What is their Role?" ,
-      choices: roles
+      choices: rolesArr
     },
     {
       name: "newHireManager",
       type: "list",
       message:"Who is their Manager? Please enter their ID." ,
-      choices: employees
+      choices: employeesArr
     },
   ];
   

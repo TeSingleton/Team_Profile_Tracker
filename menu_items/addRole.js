@@ -1,3 +1,5 @@
+const departmentsArr = require("../array_folder/departments")
+
 const addRole =[
     {name: "newRoleTitle",
   type:"input",
@@ -8,7 +10,7 @@ const addRole =[
     {name: "newRoleDepartment",
   type:"list",
   message:"Select Department for this new role",
-  choices:departments},
+  choices:departmentsArr},
   ]
 
   module.exports = addRole

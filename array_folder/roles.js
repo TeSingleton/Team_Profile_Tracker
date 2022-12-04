@@ -8,4 +8,4 @@ var rolesArr=[
     {name: "Sales Agent", value:7},
   ];
 
-  modules.exports = rolesArr
+  module.exports = rolesArr

@@ -18,9 +18,9 @@ const departmentsArr = require("./array_folder/departments");
 const employeesArr = require("./array_folder/employees");
 const rolesArr = require("./array_folder/roles");
 
-// var newRoleID = roles.lenght+1;
+var newRoleID = rolesArr.lenght+1;
 
-// var newEmployeeID = employees.length+1;
+var newEmployeeID = employeesArr.length+1;
 
 // inquirer questions
 // add employees inquirer
@@ -68,14 +68,14 @@ const showMenu = async () => {
 //view employees
 const showEmployees = async () => {
   const allEmployees = await db.query(
-    'SELECT employees.id, employees.first_name AS "First Name ",employees.last_name AS "Last Name",empRole.title AS Role,departments.name AS Department, roles.salary AS Salary, CONCAT(manager.first_name," ",manager.last_name) AS Manager FROM employees LEFT JOIN employees manager ON manager_id INNER JOIN roles ON roles.id=employees.role_id INNER JOIN departments ON(departments.id=roles.department_id)'
+    'SELECT employees.id, employees.first_name AS "First Name ",employees.last_name AS "Last Name",roles.title AS Role,departments.name AS Department, roles.salary AS Salary, CONCAT(manager.first_name," ",manager.last_name) AS Manager FROM employees LEFT JOIN employees manager ON manager.id = employees.manager_id INNER JOIN roles ON roles.id=employees.role_id INNER JOIN departments ON (departments.id = roles.department_id)'
   );
 
   console.table(allEmployees);
 };
 
 // add employee
-const addNewEmployee = async () => {
+const addNewEmployee = async (addEmployees) => {
   await inquirer
       .prompt(addEmployees)
       .then(function (data) {
@@ -83,7 +83,7 @@ const addNewEmployee = async () => {
                      const newEmployee = {};
                       newEmployee["name"] = `${data.newHireFirstName}${data.newHireLastName}`;
                      newEmployee["value"] = newEmployeeID;
-                     employees.push(newEmployee);
+                     employeesArr.push(newEmployee);
     db.query(
       `INSERT INTO employees(first_name, last_name, role_id, manager_id) VALUES (?,?,?,?)`,
       [
@@ -95,9 +95,6 @@ const addNewEmployee = async () => {
     );
   });
 };
-
-// add employees
-
 
 
 // update employee role
@@ -115,7 +112,7 @@ const updateEmpRole = async()=>{
 // view all roles 
 
 const viewAllRoles =async()=>{
-  const allRoles = await db.query('SELECT role.id, role.title AS Role, role.salary AS Salary, departments.name AS Department FROM role INNER JOIN departments ON (departments.id = role.department_id)');
+  const allRoles = await db.query('SELECT roles.id, roles.title AS Role, roles.salary AS Salary, departments.name AS Department FROM roles INNER JOIN departments ON (departments.id = roles.department_id)');
   console.table(allRoles);
 }
 
@@ -124,5 +121,33 @@ const viewAllRoles =async()=>{
 
 const addNewRole =async()=>{
   await inquirer
-      .prompt()
+      .prompt(addRole)
+      .then(function(data){
+
+          const newRole ={};
+          newRole["name"]=data.roleTitle;
+          newRole["value"]= newRoleID;
+          rolesArr.push(newRole);
+
+          db.query(`INSERT INTO roles (title, salary, department_id) VALUES (?, ?, ?)`, [data.newRoleTitle, data.newRoleSalary, data.newRoleDepartment]);
+      })
 }
+
+// View all Departments
+
+const showAllDepartments =async()=>{
+  const allDepartments =await db.query('SELECT departments.id, departments.name AS Department FROM departments');
+  console.table(allDepartments);
+}
+
+// add department 
+
+const addNewDepartment=async()=>{
+await inquirer
+.prompt(addDepartment)
+.then(function(data){
+  db.query(`INSERT INTO departments (name) VALUES (?)`, data.departmentName);
+})
+}
+
+showMenu();
