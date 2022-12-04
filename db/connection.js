@@ -1,5 +1,5 @@
 const mysql = require("mysql2");
-const connection = mysql.createConnection(
+const db= mysql.createConnection(
   {
     host: "localhost",
     // Your MySQL username below if different
@@ -11,7 +11,7 @@ const connection = mysql.createConnection(
   console.log(`Connected to the employees_db database.`)
 );
 
-connection.connect(function (err) {
+db.connect(function (err) {
   if (err) {
     throw err;
   } else {
@@ -20,4 +20,22 @@ connection.connect(function (err) {
 });
 
 
-module.exports ={connection};
+module.exports ={db};
+
+
+
+
+// const db = mysql.createConnection(
+//   {
+//     host: 'localhost',
+//     // MySQL username,
+//     user: 'root',
+//     // MySQL password
+//     password: '',
+//     database: 'classlist_db'
+//   },
+//   console.log(`Connected to the classlist_db database.`)
+// );
+
+
+// db.query =utils.promisfy(db.query);

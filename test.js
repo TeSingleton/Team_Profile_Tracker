@@ -1,3 +1,6 @@
+
+
+
 // View all departments 
 // SELECT * FROM Departments 
 

@@ -31,11 +31,11 @@ CREATE TABLE
         last_name VARCHAR(30) NOT NULL,
         role_id INT,
         manager_id INT,
-        INDEX(manager_id),
+        INDEX(id),
         Foreign Key (role_id)
          REFERENCES role (id) 
          ON DELETE CASCADE,
             Foreign Key (manager_id) 
-            REFERENCES role(id) 
-            ON DELETE  CASCADE
+            REFERENCES employees(id) 
+            ON DELETE  SET NULL
     );
