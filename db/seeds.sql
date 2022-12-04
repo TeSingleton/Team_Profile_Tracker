@@ -11,14 +11,14 @@ VALUES (1, "Senior Engineer", 130000, 1),
                 (6, "Senior Sales Agent", 90000, 4),
                 (7, "Sales Agent", 45000, 4);
 
-INSERT INTO employees(id,first_name, last_name, role_id, manager_id )
-VALUES (1, "Barry", "Allen", 6, NULL), 
-                (2, "Wally", "West", 7, 6), 
-                (3, "Jay", "Garrick", 1, NULL), 
-                (4, "Bart", "Allen", 2, 1), 
+INSERT INTO employees(id,first_name, last_name, role_id,  manager_id )
+VALUES (1, "Barry", "Allen",  6,  NULL), 
+                (2, "Wally", "West", 7, 1), 
+                (3, "Jay", "Garrick", 1,  NULL), 
+                (4, "Bart", "Allen", 2, 3), 
                 (5, "Eobard", "Thawn", 4, NULL), 
-                (6,"Jonathan", "Chambers", 3, 4), 
-                (7,"August", "Heart", 5, NULL);
+                (6, "Jonathan", "Chambers", 3,  5), 
+                (7, "August", "Heart", 5, NULL);
 
 
                 -- double check and clarify association , add something that cleans up manager associations 

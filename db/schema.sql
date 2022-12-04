@@ -26,11 +26,12 @@ CREATE TABLE
 
 CREATE TABLE
     employees(
-        id INT AUTO_INCREMENT PRIMARY KEY  NOT NULL ,
+        id INT AUTO_INCREMENT   NOT NULL ,
         first_name VARCHAR(30) NOT NULL,
         last_name VARCHAR(30) NOT NULL,
         role_id INT,
         manager_id INT,
+        PRIMARY KEY(id),
                 Foreign Key (role_id)
          REFERENCES roles (id) 
          ON DELETE SET NULL,
